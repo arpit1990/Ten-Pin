@@ -39,7 +39,24 @@ class BowlingGameTest {
     assertEquals(16, bowlingGame.score());
   }
 
-  private void rollPins(int rolls, int pins) {
+  @Test
+  public void canRollStrike() {
+    bowlingGame.roll(10);
+    bowlingGame.roll(4);
+    bowlingGame.roll(3);
+    rollPins(0, 16);
+
+    assertEquals(24, bowlingGame.score());
+  }
+
+  @Test
+  public void ExpectsThreeHundredWhenAllStrike() {
+    rollPins(10, 12);
+
+    assertEquals(300, bowlingGame.score());
+  }
+
+  private void rollPins(int pins, int rolls) {
     for(int i = 0; i < rolls; i++) {
       bowlingGame.roll(pins);
     }
